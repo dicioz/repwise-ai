@@ -1,0 +1,8 @@
+project_id = "repwise-ai"
+[auth]
+enable_signup = false
+[auth.email]
+enable_signup = false
+[functions.ai-coach]
+verify_jwt = false
+# JWT is validated by auth.getUser() in function; supports publishable keys.
