@@ -1,6 +1,6 @@
 # Database
 
-Migrazione: `supabase/migrations/202610260001_initial.sql`. Timestamp PostgreSQL `timestamptz`, UUID e unità kg. Le tabelle hanno RLS e SELECT limitata a `auth.uid()` più allowlist. Anon non ha accesso. La chiave service-role resta server-side.
+Migrazioni: `supabase/migrations/202610260001_initial.sql` e `202610260002_simple_journal.sql`, in ordine. La seconda permette NULL per peso, ripetizioni e target nelle bozze e richiede ripetizioni per le serie registrate. Nessun dato esistente viene eliminato. Timestamp PostgreSQL `timestamptz`, UUID e unità kg. Le tabelle hanno RLS e SELECT limitata a `auth.uid()` più allowlist. Anon non ha accesso. La chiave service-role resta server-side.
 
 | Entità | Contenuto |
 |---|---|

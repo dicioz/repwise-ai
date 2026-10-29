@@ -1,6 +1,6 @@
 # Repwise AI
 
-Diario palestra in italiano, mobile first. React 19, TypeScript strict, Vite, Tailwind 4, componenti locali basati sul pattern shadcn/Radix, TanStack Query, React Hook Form/Zod, Recharts. Backend Supabase separato; Gemini esclusivamente server-side.
+Diario palestra in italiano, mobile first. **Nuovo flusso semplice: risultati inseriti da tastiera, nessun timer o obbligo di progressione. Per aggiornare un progetto già pubblicato leggere [AGGIORNAMENTO.md](AGGIORNAMENTO.md), inclusa la migrazione aggiuntiva 002.** React 19, TypeScript strict, Vite, Tailwind 4, componenti locali basati sul pattern shadcn/Radix, TanStack Query, React Hook Form/Zod, Recharts. Backend Supabase separato; Gemini esclusivamente server-side.
 
 ## Avvio
 
@@ -17,7 +17,7 @@ Apri `http://localhost:5173/repwise-ai/`. Senza configurazione, è disponibile u
 ## Supabase e primo account
 
 1. Crea un progetto Supabase sul piano gratuito. In Authentication → General configuration disabilita **Allow new users to sign up** e gli accessi anonimi. Disabilita provider OAuth non utilizzati. `supabase/config.toml` configura queste opzioni per l'ambiente CLI locale: non assumere che cambi automaticamente il progetto ospitato.
-2. Installa Supabase CLI secondo la documentazione ufficiale, esegui `supabase login`, `supabase link --project-ref YOUR_PROJECT_REF`, poi `supabase db push`. In alternativa applica la migrazione versionata nel SQL Editor su un progetto nuovo. Non eseguire reset su database esistenti.
+2. Installa Supabase CLI secondo la documentazione ufficiale, esegui `supabase login`, `supabase link --project-ref YOUR_PROJECT_REF`, poi `supabase db push`. In alternativa applica le migrazioni versionate in ordine (001 e 002) nel SQL Editor su un progetto nuovo. Non eseguire reset su database esistenti.
 3. In una shell amministrativa imposta `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `REPWISE_EMAIL`, `REPWISE_PASSWORD` tramite il tuo gestore di segreti; esegui `npm run admin:create-account`. Lo script controlla che le registrazioni siano disabilitate, crea l'utente confermato e lo inserisce nella allowlist singleton. Non eseguirlo nel browser o in una build frontend. Non inserire credenziali in comandi salvati nello storico.
 4. In `.env.local` inserisci solo `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY`, ottenuti dalle impostazioni API di Supabase. Usa la chiave publishable (oppure la anon legacy), mai service-role/secret.
 5. In Auth URL configuration imposta Site URL alla URL GitHub Pages finale con `/repwise-ai/`; limita i redirect agli ambienti usati. Il login usa email/password; nessuna route callback è necessaria.

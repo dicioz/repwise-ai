@@ -1,11 +1,15 @@
+# Versione diario semplice
+
+Vedi [AGGIORNAMENTO.md](AGGIORNAMENTO.md) per il nuovo flusso, i campi NULL e la migrazione 002. Le differenze settimanali sono descrittive, nessun incremento viene richiesto o applicato.
+
 # Architettura
 
 La SPA non richiede router: le cinque sezioni sono viste di una singola pagina. Tutti gli URL restano sotto `/repwise-ai/`, quindi Pages non deve risolvere percorsi dinamici. UI italiana, temi CSS automatici o manuali, navigazione laterale desktop e inferiore mobile.
 
-- `src/lib/model.ts`: schemi Zod, ID UUID, libreria, snapshot e precompilazione. Il prefill non conferma serie e non copia RPE.
+- `src/lib/model.ts`: schemi Zod, ID UUID, libreria, snapshot e precompilazione. Le nuove serie partono con valori nulli. Lo storico viene mostrato separatamente, senza precompilare risultati.
 - `src/lib/metrics.ts`: funzioni pure condivise fra frontend e Edge Function. I confronti richiedono identità esercizio, tipo, unilateralità e sequenza target equivalenti. Il carico può progredire, le serie di riscaldamento non contano.
 - `src/lib/storage.ts`: persistenza locale isolata per UUID account e snapshot pendente, con ID operazione e revisione attesa.
-- `src/App.tsx`: login, schede, diario, timer a scadenza assoluta, storico, grafici e richieste AI. TanStack Query gestisce il caricamento report; React Hook Form/Zod il login; editor e serie sono validati prima della conferma.
+- `src/App.tsx`: login, schede, diario senza timer o conferme per serie, storico, grafici e richieste AI. TanStack Query gestisce il caricamento report; React Hook Form/Zod il login; editor e serie sono validati prima della conferma.
 - PostgreSQL: fatti normalizzati e cache documentale per ripristino. Una sola RPC transazionale muta i dati; le tabelle non sono direttamente scrivibili dal client.
 - Edge Function: autenticazione, allowlist, query RLS, statistiche e progressione deterministiche, Gemini, validazione, persistenza report.
 

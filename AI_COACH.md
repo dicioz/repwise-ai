@@ -1,8 +1,14 @@
+# Diario semplice e decisioni dell’utente
+
+Il percorso principale non mostra più proposte da accettare o ignorare: confronta soltanto valori reali tra settimane. Nessun aumento di peso o ripetizioni è obbligatorio, automatico o previsto ogni settimana. Il corpo libero non espone carichi. Il prompt Gemini lo specifica esplicitamente; i campi bozza NULL sono supportati.
+
+Il motore descritto sotto resta un componente interno per analisi facoltative su richiesta; i precedenti controlli Accetta/Ignora/Modifica non sono più presenti nella UI.
+
 # AI Coach
 
-Il motore deterministico e Gemini sono separati. Il primo funziona offline e non necessita di API. Valuta completezza delle serie, target, RPE, carichi omogenei, tipo esercizio, incremento e precedenti equivalenti. Le soglie RPE sono modificabili nelle impostazioni. Il corpo libero propone ripetizioni; oltre il limite configurato consolida invece di aumentare senza fine. Nessun incremento viene applicato automaticamente.
+Il motore deterministico e Gemini sono separati. Il primo funziona offline e non necessita di API. Valuta completezza delle serie, target, RPE, carichi omogenei, tipo esercizio, incremento e precedenti equivalenti. Le soglie RPE rimangono configurabili nel motore interno. Il corpo libero propone ripetizioni; oltre il limite configurato consolida invece di aumentare senza fine. Nessun incremento viene applicato automaticamente.
 
-Ogni proposta mostra azione, motivazione, numero di serie/RPE/storico utilizzato e affidabilità basata sulla disponibilità di precedenti confrontabili. Accetta registra la scelta, Ignora la rifiuta; Modifica proposta applica solo il carico manualmente digitato dall'utente alle future serie allenanti della scheda. Non viene modificata una seduta già registrata.
+Ogni risultato interno include azione, motivazione, dati e affidabilità. Nessun risultato viene applicato al diario o alla scheda; la UI mostra soltanto confronti descrittivi.
 
 ## Richieste Gemini
 
